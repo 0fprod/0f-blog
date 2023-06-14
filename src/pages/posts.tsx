@@ -18,7 +18,7 @@ export const getStaticProps = () => {
 export default function Posts({ posts }: Props) {
   return (
     <Layout>
-      <h2>Posts page </h2>
+      <h2>All posts </h2>
       <ul>
         {posts.map((post) => (
           <li key={post.slug}>
