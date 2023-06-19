@@ -1,10 +1,5 @@
-:root {
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-  }
-}
+@import url(one-dark.css);
+@import url(one-light.css);
 
 * {
   box-sizing: border-box;
@@ -16,16 +11,4 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-}
-
-body {
-}
-
-a {
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
