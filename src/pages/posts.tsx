@@ -1,6 +1,7 @@
-import Link from 'next/link';
-import { Post, getAllPosts } from '@/lib/get-posts';
 import { Layout } from '@/components/layout/Layout';
+import { Post } from '@/models/Post';
+import { getAllPosts } from '@/lib';
+import Link from 'next/link';
 
 interface Props {
   posts: Post[];
