@@ -1,16 +1,20 @@
-import Link from "next/link";
+import Link from 'next/link';
+import { Nav } from './Navbar.styles';
+import { useRouter } from 'next/router';
 
 export const Navbar = () => {
-    return (
-        <nav>
-            <ul>
-                <li>
-                    <Link href="/">Home</Link>
-                </li>
-                <li>
-                    <Link href="/posts">Posts</Link>
-                </li>
-            </ul>
-        </nav>
-        )
-}
+  const router = useRouter();
+
+  return (
+    <Nav>
+      <ul>
+        <li className={router.pathname === '/' ? 'active' : ''}>
+          <Link href="/">Home</Link>
+        </li>
+        <li className={router.pathname === '/posts' ? 'active' : ''}>
+          <Link href="/posts">Posts</Link>
+        </li>
+      </ul>
+    </Nav>
+  );
+};
