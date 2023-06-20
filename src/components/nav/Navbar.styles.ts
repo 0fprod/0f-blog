@@ -5,8 +5,12 @@ export const Nav = styled.nav`
 /* Mobile */
 background-color: #d6cfe2;
 padding: 0.25rem 1rem;
-color: #404040;
 font-weight: bold;
+
+// preffered color scheme
+@media (prefers-color-scheme: dark) {
+  background-color: #252526;
+}
 
 .active {
   text-decoration: underline;
