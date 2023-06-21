@@ -4,7 +4,7 @@ export const Nav = styled.nav`
   transition: all 0.5s ease-in-out;
 /* Mobile */
 background-color: #d6cfe2;
-padding: 0.25rem 1rem;
+padding: 0.5rem 1rem;
 font-weight: bold;
 
 // preffered color scheme
@@ -28,7 +28,7 @@ ul {
 @media screen and (min-width: 768px) {
   transition: all 0.25s ease-in-out;
   padding: 0.75rem 1.25rem;
-  font-size: larger ;
+  font-size: 1.5rem ;
 
   a:hover {
     text-decoration: underline;
