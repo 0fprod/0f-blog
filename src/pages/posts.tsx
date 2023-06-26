@@ -1,11 +1,7 @@
 import { Layout } from '@/components/layout/Layout';
 import { Post } from '@/models/Post';
 import { getAllPosts } from '@/lib';
-import Link from 'next/link';
-
-interface Props {
-  posts: Post[];
-}
+import Posts from '@/components/posts/Posts';
 
 export const getStaticProps = () => {
   const posts = getAllPosts();
@@ -16,17 +12,10 @@ export const getStaticProps = () => {
   };
 };
 
-export default function Posts({ posts }: Props) {
+export default function PostsPage({ posts }: { posts: Post[] }) {
   return (
     <Layout>
-      <h2>All posts </h2>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.slug}>
-            <Link href={`/posts/${post.slug}`}>{post.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <Posts posts={posts} />
     </Layout>
   );
 }

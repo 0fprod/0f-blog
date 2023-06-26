@@ -10,6 +10,8 @@ export const parsePost = (filepath: string): Post => {
     title: data.title,
     slug: data.id,
     date: data.date,
+    description: data.description,
+    imageUrl: data.image,
     content,
   };
 };

@@ -3,4 +3,6 @@ export interface Post {
   slug: string;
   date: string;
   content: string;
+  description: string;
+  imageUrl: string;
 }
