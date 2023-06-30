@@ -4,7 +4,7 @@ id: events-in-solidity
 date: '2023-03-02'
 image_alt: events in solidity
 description: What are they? What are they for? How are the events used in Solidity?
-image: /eventos-en-solidity.jpeg
+image: /eventos-en-solidity.webp
 ---
 
 In this article, we will use the terms "Events" and "Logs" to refer to the same concept. In Ethereum, one term or the other is preferred depending on the context (for example, "logs" in the EVM and "events" in Solidity). However, since both terms are interdependent and one is a consequence of the other, we will use them interchangeably to refer to the same thing.

@@ -4,7 +4,7 @@ id: storage-in-solidity
 date: '2022-10-19'
 image_alt: storage in solidity
 description: What types of storage are in Solidity? Memory vs Storage.
-image: /almacenamiento-en-solidity.jpeg
+image: /almacenamiento-en-solidity.webp
 ---
 
 In this article, we're going to delve a bit deeper into persistent storage on EVM-compatible blockchains[^1]. In other languages, it's not necessary to know what happens at a low level in order to write efficient code, but in the case of Solidity (which is not quite a high-level language), it is important – though not essential – to know this, because operations cost gas.
