@@ -1,15 +1,8 @@
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { Layout } from '@/components/layout/Layout';
+import Post from '@/components/posts/post/Post';
 import { getAllPosts, getPostBySlug } from '@/lib';
-import { Code } from '@/components/code/Code';
-import { Post } from '@/models/Post';
-import remarkGfm from 'remark-gfm';
+import { Post as PostModel } from '@/models/Post';
 import React from 'react';
-
-interface Props {
-  post: Post;
-}
-
 interface Context {
   params: {
     slug: string;
@@ -39,13 +32,10 @@ export const getStaticProps = ({ params }: Context) => {
   };
 };
 
-export default function Post({ post }: Props) {
+export default function PostPage({ post }: { post: PostModel }) {
   return (
     <Layout>
-      <article>
-        <h2>{post?.title}</h2>
-        <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: Code }} children={post?.content} />
-      </article>
+      <Post post={post} />
     </Layout>
   );
 }
