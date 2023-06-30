@@ -20,7 +20,8 @@ p {
 `;
 
 export const PostsContainer = styled.ul`
-margin-top: 2rem;
+width: 100%;
+margin-top: 1rem;
 display: flex;
 flex-direction: row;
 justify-content: center;
