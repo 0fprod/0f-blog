@@ -44,7 +44,7 @@ In this example, we will use the _[composer](https://composer.alchemy.com/)_ too
 
 For example:
 
-<img src="/images/src/blog/eventos-en-solidity/composer.webp" alt="composer example about querying logs" class="big" />
+![compose example](/composer.webp)
 
 This will result in something like this:
 
@@ -115,21 +115,18 @@ Another use case is to store data in an external system to the contract or logs,
 
 To use The Graph, we simply provide the contract address and ABI[^5], and it takes care of constantly querying those events and executing a specific "mapper" function (defined by us) to save them to its node. Then, The Graph node exposes a GraphQL endpoint for us to query the aggregated data in whatever way we desire.
 
+---
+
 ### Resources
 
-[Ethers provider methods](https://docs.ethers.org/v5/api/providers/provider/#Provider--inspection-methods)
+- [Ethers provider methods](https://docs.ethers.org/v5/api/providers/provider/#Provider--inspection-methods)
+- [TheGraph documentation](https://thegraph.com/docs/en/)
+- [Playground keccak256](https://emn178.github.io/online-tools/keccak_256.html)
+- [Composer](https://composer.alchemy.com/)
+- [eth_getlogs documentation](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getlogs)
+- [Solidity events docs](https://docs.soliditylang.org/en/v0.4.24/contracts.html#events)
 
-[TheGraph documentation](https://thegraph.com/docs/en/)
-
-[Playground keccak256](https://emn178.github.io/online-tools/keccak_256.html)
-
-[Composer](https://composer.alchemy.com/)
-
-[eth_getlogs documentation](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getlogs)
-
-[Solidity events docs](https://docs.soliditylang.org/en/v0.4.24/contracts.html#events)
-
-### NOTES
+---
 
 [^1]: Bloom Filters: [https://en.wikipedia.org/wiki/Bloom_filter](https://en.wikipedia.org/wiki/Bloom_filter)
 [^2]: Canonical form: It means the function name followed by the parameter types. For example `function foo(boolean bar){}` would be `foo(boolean)`

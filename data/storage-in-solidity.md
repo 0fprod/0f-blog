@@ -30,31 +30,31 @@ In _Solidity_, there are two types of storage: volatile (Memory), which can be t
 - **Memory**: Variables defined in the body of functions (whether or not they contain the **memory** keyword) are temporary; they only exist within the _scope_ of that function, and they are deleted when the function execution ends until the next execution, where a new storage space is allocated.
 
 ```solidity
-    contract Foo {
-    	// State variables
-    	uint8[] foo;
+contract Foo {
+  // State variables
+  uint8[] foo;
 
-    	function bar(string memory _bar, bool _foo) public {
-            // Memory variables
-            uint8 baz = 10;
-            // Copy of foo, modifications to _baz doesn't affect the foo state
-            uint8[] memory _baz = foo;
-        }
+  function bar(string memory _bar, bool _foo) public {
+        // Memory variables
+        uint8 baz = 10;
+        // Copy of foo, modifications to _baz doesn't affect the foo state
+        uint8[] memory _baz = foo;
     }
+}
 ```
 
 - **Storage**: Variables defined outside of functions are considered persistent by default (known as state variables). These variables persist on the blockchain.
 
 ```solidity
-    contract Foo {
-    	// State variables
-    	uint8[] foo;
+contract Foo {
+  // State variables
+  uint8[] foo;
 
-    	function bar() public {
-    	    // Reference to foo, modifications to _baz alters the foo state
-    	    uint8[] storage _baz = foo;
-        }
+  function bar() public {
+      // Reference to foo, modifications to _baz alters the foo state
+      uint8[] storage _baz = foo;
     }
+}
 ```
 
 ## Storage & SmartContracts
@@ -75,8 +75,8 @@ contract StoragePlayground {
   bool someBool;     // Storage at slot 1
 
   constructor() {
-     favNumber = 5;
-     someBool = true;
+    favNumber = 5;
+    someBool = true;
   }
 }
 ```
@@ -104,7 +104,6 @@ This piece of code prints out to the console the first 5 slots in the contract s
 2 -> 0x0000000000000000000000000000000000000000000000000000000000000000
 3 -> 0x0000000000000000000000000000000000000000000000000000000000000000
 4 -> 0x0000000000000000000000000000000000000000000000000000000000000000
-
 ```
 
 As expected, the number 5 was stored in position 0 and True in position 1.
@@ -151,7 +150,6 @@ We see that the data stored at slots 2, 3 and 4 are the hexadecimal values of 10
 2 -> 0x000000000000000000000000000000000000000000000000000000000000000a
 3 -> 0x0000000000000000000000000000000000000000000000000000000000000014
 4 -> 0x000000000000000000000000000000000000000000000000000000000000001e
-
 ```
 
 And what about dynamic arrays? How does the EVM know how many slots to reserve between variables?
@@ -274,21 +272,18 @@ As a curiosity about this function, it allows us to access the contents of a mem
 
 As seen in the last example, there are public variables (by default) and private ones (those that have the `private` 3121prefix), so using this function, you can see them all if you have access to the contract code and simply count in which slot the variable is defined. So remember, never store sensitive data in the blockchain.
 
-## Recursos
+---
 
-[keccak256 playground](https://emn178.github.io/online-tools/keccak_256.html)
+## Resources
 
-[hex-to-decimal converter](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
+- [keccak256 playground](https://emn178.github.io/online-tools/keccak_256.html)
+- [hex-to-decimal converter](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
+- [Solidity documentation](https://docs.soliditylang.org/en/develop/internals/layout_in_storage.html#layout-of-state-variables-in-storage)
+- [ethers.utils documentation](https://docs.ethers.io/v4/api-utils.html#)
+- [Supporting repository](https://github.com/PatrickAlphaC/hardhat-fund-me-fcc)
+- [Adrian Hetman post](https://www.adrianhetman.com/unboxing-evm-storage/)
 
-[Solidity documentation](https://docs.soliditylang.org/en/develop/internals/layout_in_storage.html#layout-of-state-variables-in-storage)
-
-[ethers.utils documentation](https://docs.ethers.io/v4/api-utils.html#)
-
-[Supporting repository](https://github.com/PatrickAlphaC/hardhat-fund-me-fcc)
-
-[Adrian Hetman post](https://www.adrianhetman.com/unboxing-evm-storage/)
-
-### Footnotes
+---
 
 [^1]: Ethereum Virtual Machine. It is an entity supported by the nodes that make up the network. We can see it as a distributed state machine. It does not share resources in terms of computing power with other nodes, but it does share global state. It is capable of executing code.
 [^2]: It is a key-value dictionary, it is not iterable and its size is dynamic. Its syntax is `(key-type ⇒ key-value-type) variable-name`. Mappings can be nested.

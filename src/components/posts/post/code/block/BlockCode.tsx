@@ -17,7 +17,7 @@ export const CodeBlock = ({ className, content }: CodeBlockProps) => {
     <SyntaxHighlighter
       children={String(content).replace(/\n$/, '')}
       language={match[1]}
-      showLineNumbers={true}
+      showLineNumbers={false}
       useInlineStyles={false}
       wrapLongLines={true}
     />

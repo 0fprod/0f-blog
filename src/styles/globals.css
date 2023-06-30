@@ -3,11 +3,13 @@
 
 :root {
   --color-primary: #d6cfe2;
+  --accent-color: #c6b7dd;
   --background-color: #f0f0f0;
   --color: #404040;
 
   @media (prefers-color-scheme: dark) {
     --color-primary: #252526;
+    --accent-color: #333334;
     --background-color: #2d2d2d;
     --color: #ffffff;
   }
@@ -38,11 +40,3 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
-/* @media (prefers-color-scheme: dark) {
-  html,
-  body {
-    background-color: #2d2d2d;
-    color: #ffffff;
-  }
-} */

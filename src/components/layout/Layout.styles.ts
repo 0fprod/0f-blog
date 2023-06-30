@@ -4,7 +4,7 @@ export const Main = styled.main`
 transition: all 0.5s ease-in-out;
 /* Mobile */
 display: flex;
-padding: 2rem;
+padding: 1.25rem;
 
 /* Tablet */
 @media screen and (min-width: 768px) {
