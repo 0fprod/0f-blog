@@ -3,14 +3,10 @@ import styled from '@emotion/styled';
 export const Nav = styled.nav`
   transition: all 0.5s ease-in-out;
 /* Mobile */
-background-color: #d6cfe2;
+background-color: var(--color-primary);
 padding: 0.5rem 1rem;
 font-weight: bold;
 
-// preffered color scheme
-@media (prefers-color-scheme: dark) {
-  background-color: #252526;
-}
 
 .active {
   text-decoration: underline;

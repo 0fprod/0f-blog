@@ -12,7 +12,7 @@ height: 20rem;
 padding: 1rem;
 border-radius: 0.5rem;
 
-background-color: #d6cfe2;
+background-color: var(--color-primary);
 
 .date {
   font-size: small;
@@ -56,7 +56,6 @@ img {
 }
 
 @media (prefers-color-scheme: dark) {
-  background-color: #252526;
 
   a:hover ~ img {
     opacity: 0.35;
