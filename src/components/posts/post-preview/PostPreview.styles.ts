@@ -80,8 +80,8 @@ img {
       text-underline-offset: 0.25rem;
 
       ~ img {
-          opacity: 0.15;
-        }
+        opacity: 0.15;
+      }
     }
   }
 
