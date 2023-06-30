@@ -72,4 +72,25 @@ a {
 hr {
   margin: 2rem 0;
 }
+
+@media (min-width: 768px) {
+  th,td,p, li {
+    font-size: smaller;
+  }
+
+  p {
+    margin: 2rem 0;
+  }
+
+  pre {
+    font-size: 1.25rem;
+  }
+
+  table {
+    thead th:nth-of-type(4),
+    tbody td:nth-of-type(4) {
+      display: block;
+    }
+  }
+}
 `;
