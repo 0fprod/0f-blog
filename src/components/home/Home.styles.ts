@@ -41,6 +41,8 @@ img {
     display: block;
     width: 300px;
     height: 300px;
+    background-color: lightcoral;
+    border-radius: 10rem;
   }
 } 
 `;

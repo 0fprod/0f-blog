@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import profilePic from '../../../public/senior.png';
+import profilePic from '../../../public/profile.webp';
 import React from 'react';
 import { PageSection, SectionContent, SectionHeader } from './Home.styles';
 
