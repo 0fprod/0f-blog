@@ -7,6 +7,14 @@ background-color: var(--color-primary);
 padding: 0.5rem 1rem;
 font-weight: bold;
 
+&.fixed {
+  transition: all 0.5s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
 
 .active {
   text-decoration: underline;
