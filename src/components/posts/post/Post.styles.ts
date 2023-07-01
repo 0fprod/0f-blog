@@ -4,6 +4,10 @@ export const Article = styled.article`
 max-width: 100vw;
 overflow-x: hidden;
 
+th, td, p, li, pre {
+  font-size: 1.15rem;
+}
+
 p {
   margin: 1rem 0;
 
@@ -13,7 +17,6 @@ p {
 }
 
 table {
-  font-family: Arial, Helvetica, sans-serif;
   width: 100%;
   border-collapse: collapse;
   overflow-x: auto;
@@ -27,13 +30,14 @@ table {
     border-bottom: 1px solid var(--color);
   }
 
-  thead th:nth-child(4),
-  tbody td:nth-child(4) {
+  thead th:nth-of-type(4),
+  tbody td:nth-of-type(4) {
     display: none;
   }
 
   td,  th {
     padding: 0.5rem;
+    font-size: 0.85rem;
   }
   
   tr:hover {
@@ -62,7 +66,6 @@ pre {
 
 ul {
   margin: 1rem 0;
-  list-style: circle;
 }
 
 a {
@@ -73,8 +76,15 @@ hr {
   margin: 2rem 0;
 }
 
-@media (min-width: 768px) {
-  th,td,p, li {
+@media screen and (min-width: 425px) { 
+  th, td,p, li, pre {
+    font-size: 0.6rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+ 
+  th, td, p, li {
     font-size: smaller;
   }
 
@@ -91,6 +101,16 @@ hr {
     tbody td:nth-of-type(4) {
       display: block;
     }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  th, td, p, li {
+    font-size: 1.25rem;
+  }
+
+  h2 {
+    font-size: 2rem;
   }
 }
 `;

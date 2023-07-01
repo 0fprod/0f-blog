@@ -16,6 +16,6 @@ padding: 1.25rem;
 /* Desktop */
 @media screen and (min-width: 1024px) {
   transition: all 0.25s ease-in-out;
-  padding: 1rem 8rem;
+  padding: 5rem 8rem;
 }
 `;
