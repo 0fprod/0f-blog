@@ -15,7 +15,7 @@ In Solidity, events can be considered as an abstraction of the logs that the EVM
 
 ## What are they for?
 
-When writing a smart contract in Solidity, it is possible to declare and emit events. The question is, what are events for if we cannot subscribe to them from a contract or receive updates from other contracts that emit events?
+When writing a smart contract in Solidity, it is possible to declare and emit events. The question is, what are events for if we **cannot subscribe to them from a contract** or receive updates from other contracts that emit events?
 
 Events in Solidity have the following syntax:
 
@@ -36,7 +36,7 @@ contract MySmartContract {
 
 To declare events in Solidity, it is necessary to give them a name and define their parameters. Conventionally, the name of the function that emits the event is used, but reversed. To emit an event, simply call the `emit` function along with the name of the event and the defined parameters. It is important to note that some of the parameters may have the keyword `indexed`, while others may not. We will see the use of this in a later section.
 
-Going back to the question, why do we want to emit events that we cannot subscribe to? The answer is that we want to subscribe to those events from **outside** the network. It is important to note that a blockchain network is like a closed circuit, and it is not possible to bring data from external sources as if it were an HTTP request, nor is it possible to send data to specific servers. It is true that you cannot subscribe directly to an event, as the network does not send you a notification that something has happened, but simply when an event occurs, the EVM adds that log to the node, which can then be queried in various ways.
+Going back to the question, why do we want to emit events that we cannot subscribe to? The answer is that we want to subscribe to those events from **outside** the network. They are often used to update UI's. It is important to note that a blockchain network is like a closed circuit, and it is not possible to bring data from external sources as if it were an HTTP request, nor is it possible to send data to specific servers. It is true that you cannot subscribe directly to an event, as the network does not send you a notification that something has happened, but simply when an event occurs, the EVM adds that log to the node, which **can then be queried** in various ways.
 
 ## How to query them?
 
@@ -69,13 +69,14 @@ This will result in something like this:
 }
 ```
 
-At first glance, it is not readable, nor does it provide much... Later we will see use cases.
+At first glance, it is not readable, nor does it provide much...We would need other tools to be able to read this code. Later we will see use cases.
 
 ## Can we filter them?
 
 Of course! In addition to the block range, you can add _topics_ to the query of the logs. Topics are an array that contains the arguments of the emitted event, but they are added in a specific format. For example, if we want to filter by the `UserRegistered` event, we should add to the topic the hash resulting from applying the keccak256 function to its canonical form[^2] (you can use [this](https://emn178.github.io/online-tools/keccak_256.html) tool to get the value).
 
 ```json
+// For example, applying the hash function to UserRegistered(uint256) would result in the following hex code
 "topics": ["0x6b1da47e6cb6a4952c75fff4300f06caf20aa8269a4a398f315562926c5bed39"]
 ```
 
@@ -109,9 +110,9 @@ provider.on(filter, (log, event) => {
 });
 ```
 
-The truth is that filtering logs or making this type of queries to the network is not trivial. If we need to make queries with more complex filters, for example, we would first have to process and store the data in a specific database and then make queries in SQL, Mongo or another tool. Luckily, there is a solution to this problem: [The Graph](https://thegraph.com/en/).
+The truth is that filtering logs or making this type of queries to the network is not trivial. If we need to make queries with more complex filters, for example, we would first have to process and store the data in a specific database and then make queries in SQL, Mongo or another tool that is more efficient than querying the blockchain. Luckily, there are some a solution to this problem, and one of them is [The Graph](https://thegraph.com/en/) protocol.
 
-Another use case is to store data in an external system to the contract or logs, where TheGraph is very useful. It is commonly used for **NFT marketplaces**, where it is necessary to maintain a list of NFTs that are for sale with certain properties (which implies preprocessing the data). To achieve this, we only need to emit events to buy or sell NFTs, without the need to store these lists in the contract, which would be more expensive.
+Another use case is at **NFT marketplaces**, where it is necessary to maintain a list of NFTs that are for sale with certain properties (which implies preprocessing the data). To achieve this, we only need to emit events to buy or sell NFTs, listen to them and store the processed data in a separated database, without the need to store this list in the contract, which would be **more expensive**.
 
 To use The Graph, we simply provide the contract address and ABI[^5], and it takes care of constantly querying those events and executing a specific "mapper" function (defined by us) to save them to its node. Then, The Graph node exposes a GraphQL endpoint for us to query the aggregated data in whatever way we desire.
 

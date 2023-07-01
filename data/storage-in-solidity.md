@@ -21,7 +21,7 @@ Gas is the unit that measures the amount of computational effort required to exe
 | 0x55   | SSTORE  | Save word to storage   | -          | 20000\*\* |
 | ...    | ...     | ...                    | -          | ...       |
 
-Opcodes table: [https://github.com/crytic/evm-opcodes](https://github.com/crytic/evm-opcodes)
+Full table at: [https://github.com/crytic/evm-opcodes](https://github.com/crytic/evm-opcodes)
 
 ## Memory & Storage
 
@@ -154,7 +154,7 @@ We see that the data stored at slots 2, 3 and 4 are the hexadecimal values of 10
 
 And what about dynamic arrays? How does the EVM know how many slots to reserve between variables?
 
-Well, it doesn't know 😅, and to solve this it uses a hash function _keccak256_, to find a memory position and not overwrite other slots. Let's change the code a bit to add a dynamic array. Reemplazamos `uint256[3] myArray` con `uint256[] myArray`. The rest of the code remains the same with the same 3 elements.
+Well, it doesn't know 😅, and to solve this it uses a hash function _keccak256_, to find a memory position and not overwrite other slots. Let's change the code a bit to add a dynamic array. Replace `uint256[3] myArray` with `uint256[] myArray`. The rest of the code remains the same with the same 3 elements.
 
 ```bash
 0 -> 0x0000000000000000000000000000000000000000000000000000000000000005
@@ -235,42 +235,44 @@ In this output, we see that slot 2 is completely empty, unlike the dynamic array
 
 ```
 
-However, to calculate the memory position to store the data, it does something similar to arrays. In this case, the [formula to apply is this](https://docs.soliditylang.org/en/develop/internals/layout_in_storage.html#mappings-and-dynamic-arrays): `keccak256(h(k) . p)`. Where `h` is a function based on the type of the key, `k` is the dictionary key, `p` is the memory slot of the mapping, and `.` is the concatenation of both.
+However, to calculate the memory position to store the data, it does something similar to arrays. In this case, the [formula to apply is this](https://docs.soliditylang.org/en/develop/internals/layout_in_storage.html#mappings-and-dynamic-arrays): `keccak256(h(k) . p)`. Where `h` is a function based on the type of the key (could be values, strings and byte arrays), `k` is the dictionary key, `p` is the memory slot of the mapping, and `.` is the concatenation of both.
 
 ```typescript
 // Convert to hexadecimal the slot 0x2 and the dictionary key
 const p = ethers.utils.hexZeroPad('0x2', 32);
-const keyAsHex = ethers.BigNumber.from(10).toHexString();
-const h_k_ = ethers.utils.hexZeroPad(keyAsHex, 32);
+const k = ethers.BigNumber.from(10).toHexString();
+// For values we only add zeroes
+const h_k_ = ethers.utils.hexZeroPad(k, 32);
 
 // Concat
 const concat = ethers.utils.concat([h_k_, p]);
 
 // Apply hash
-const concatHash = ethers.utils.keccak256(concat);
+const hashedSlot = ethers.utils.keccak256(concat);
 
-// Get the date
-const valor = await ethers.provider.getStorageAt(contract.address, concatHash);
+// Get the value at the calculated slot (hashedSlot)
+const value = await ethers.provider.getStorageAt(contract.address, hashedSlot);
 
-// This would be the output of concatHash and the value for the 3 keys
+// This would be the output of hashedSlot and the value for the 3 keys:
+
 // dictionary[10] = true
-// 0xd3604db978f6137b0d18816b77b2ce810487a3af08a922e0b184963be5f3adfc
-// 0x0000000000000000000000000000000000000000000000000000000000000001
+// Slot  -> 0xd3604db978f6137b0d18816b77b2ce810487a3af08a922e0b184963be5f3adfc
+// Value -> 0x0000000000000000000000000000000000000000000000000000000000000001
 
 // dictionary[20] = false
-// 0x50d9dffd10eb4437a15e8bb1c50afee98ea231805f136fb9a057e7aaeec448ae
-// 0x0000000000000000000000000000000000000000000000000000000000000000
+// Slot  -> 0x50d9dffd10eb4437a15e8bb1c50afee98ea231805f136fb9a057e7aaeec448ae
+// Value -> 0x0000000000000000000000000000000000000000000000000000000000000000
 
 // dictionary[30] = true
-// 0x6ea47ca2f9e3a67b0e336c514aa9f125109f49309b7162caec32e7d27e5c838c
-// 0x0000000000000000000000000000000000000000000000000000000000000001
+// Slot  -> 0x6ea47ca2f9e3a67b0e336c514aa9f125109f49309b7162caec32e7d27e5c838c
+// Value -> 0x0000000000000000000000000000000000000000000000000000000000000001
 ```
 
 ## getStorageAt
 
 As a curiosity about this function, it allows us to access the contents of a memory slot in a contract's storage. If you think about it, you can see everything, as long as you have access to the contract, you can see in which slot something is stored.
 
-As seen in the last example, there are public variables (by default) and private ones (those that have the `private` 3121prefix), so using this function, you can see them all if you have access to the contract code and simply count in which slot the variable is defined. So remember, never store sensitive data in the blockchain.
+As seen in the last example, there are public variables (by default) and private ones (those that have the `private` prefix), so using this function, you can see them all if you have access to the contract code and simply count in which slot the variable is defined. So remember, **never** store sensitive data in the blockchain.
 
 ---
 
