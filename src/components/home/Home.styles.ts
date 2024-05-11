@@ -41,7 +41,7 @@ img {
     display: block;
     width: 300px;
     height: 300px;
-    background-color: lightcoral;
+    background-color: azure;
     border-radius: 10rem;
   }
 } 
