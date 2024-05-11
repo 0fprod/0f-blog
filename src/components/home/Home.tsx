@@ -12,8 +12,9 @@ export default function Home() {
           <SectionContent>
             <h1>Hi! I'm Fran.</h1>
             <p>
-              In this blog, I'm going to share my thoughts about software development, frontend technologies, and
-              everything I learn during my journey as a developer.
+              Welcome to my blog! Here I'm going to share some articles about software development, blockchain, and
+              other tech-related topics. I hope you find them interesting and useful. Enjoy your stay! 🚀 Also some of
+              my pet projects 🐕
             </p>
           </SectionContent>
         </SectionHeader>
@@ -21,19 +22,18 @@ export default function Home() {
         <section>
           <h3> Who am I?</h3>
           <p>
-            I graduated as a software engineer in 2017 and I've not stopped learning since then, my interests are
-            football ⚽️, finances 📈, blockchain ⛓️, and of course frontend development (💙 typescript). I'm also a big
-            fan of Web3 technology 🤘🏼!
+            I graduated in 2017 as a software engineer and have been diving into the tech world ever since. I'm all
+            about football, blockchain, and full-stack development, especially in the Web3 space. I had the opportunity
+            to share insights as a speaker at JavaScript Day Canarias in2023 about web3 development tools and how to
+            write decentralized applications compatible with EVM.
           </p>
           <p>
-            As for my experience, I've worked with several stacks as a full-stack developer using technologies such as
-            Java, C#, NodeJs and Python but during my last years I've been more focused, and where I feel more
-            comfortable is as a frontend developer with the typical frameworks like Angular, React or Vue.
+            With over 7 years of delivering professional software. I've been tinkering with everything from front end
+            applications, back-ends to smart contracts and always trying to follow the best practices. I'm a huge
+            advocate for automated testing; it gives me that extra confidence boost. For me, it's all about writing
+            quality, straightforward code that's easy to maintain and adapt.
           </p>
-          <p>
-            I'm a team player, I enjoy working doing pairing sessions or even mob programming with the team. I'm also
-            interested in following the best practices when we create software 😁
-          </p>
+          <p>And speaking of adaptability, successful software should be able to evolve effortlessly, right?</p>
         </section>
       </PageSection>
     </React.Fragment>
