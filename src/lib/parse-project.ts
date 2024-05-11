@@ -14,6 +14,6 @@ export const parseProject = (filepath: string): Project => {
     imageUrl: data.image,
     url: data.url,
     repository: data.repository,
-    tags: data.tags,
+    tags: data.tags.sort(),
   };
 }
